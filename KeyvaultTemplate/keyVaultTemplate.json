@@ -1,0 +1,454 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"keyVaultName": {
+			"type": "string",
+			"metadata": {
+				"description": "The name of the Key Vault."
+			}
+		},
+		"location": {
+			"type": "string",
+			"defaultValue": "[resourceGroup().location]",
+			"metadata": {
+				"description": "The location for all resources."
+			}
+		}
+	},
+	"resources": [
+		{
+			"type": "Microsoft.KeyVault/vaults",
+			"apiVersion": "2021-04-01-preview",
+			"name": "[parameters('keyVaultName')]",
+			"location": "[parameters('location')]",
+			"properties": {
+				"sku": {
+					"name": "Standard",
+					"family": "A"
+				},
+				"enabledForDeployment": true,
+				"tenantId": "[subscription().tenantId]",
+				"accessPolicies": [],
+				"enabledForTemplateDeployment": true,
+				"enabledForDiskEncryption": true,
+				"publicNetworkAccess": "Enabled",
+				"enableSoftDelete": true,
+				"softDeleteRetentionInDays": 90,
+				"networkAcls": {
+					"defaultAction": "allow",
+					"bypass": "AzureServices"
+				}
+			},
+			"resources": [
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/ApiKey')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/ApiUrl')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/AppInsightsInstrumentationKey')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/ApplicationContainerName')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/AppUrl')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/B2C-BaseAddress')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/B2C-ClientId')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/B2C-ClientSecret')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/B2C-Issuer')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/B2C-LoginPolicy')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/B2C-ResetPasswordPolicy')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/B2C-Tenant')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/ConsignoBaseUrl')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/CRMActionName')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/CRMApiURL')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/CRMApplicationClientId')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/CrmApplicationSecretKey')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/CrmApplicationTenantId')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/CRMBundleActionName')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/CRMDomainBundleURL')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/CRMDomainURL')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/DynamicsAPIUrlPart')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/ElexKey')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/GeneralContainerName')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/Hangfire-Password')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/Hangfire-Username')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/HangFireSQLConnectionString')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/JsonContainerName')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/Jwt-Audience')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/Jwt-ExpirationDuration')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/Jwt-Issuer')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/Jwt-Secrete')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/PdfTronLicenseKey')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/PdfTronLicenseViewerKey')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/SQLConnectionString')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/StorageConnectionString')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				},
+				{
+					"type": "Microsoft.KeyVault/vaults/secrets",
+					"apiVersion": "2021-06-01-preview",
+					"name": "[concat(parameters('keyVaultName'), '/XmlContainerName')]",
+					"properties": {
+						"value": ""
+					},
+					"dependsOn": [
+						"[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+					]
+				}
+			]
+		}
+	]
+}
