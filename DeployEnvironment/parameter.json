@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"Appname": {
+			"value": "arm-demo-deploy60"
+		},
+		"location": {
+			"value": "Australia East"
+		},
+		"appServicePlanName": {
+			"value": "ASP-demo-arm-01"
+		},
+		"appServicePlanResourceGroup": {
+			"value": "BriefCourt-Aus"
+		},
+		"keyVaultName": {
+			"value": "arm-demo-kv58"
+		},
+		"storageAccountName": {
+			"value": "armdemoblob58"
+		},
+		"sqlServerName": {
+			"value": "breifcourtdb"
+		},
+		"databaseName": {
+			"value": "demoarmdb14"
+		},
+		"databaseEdition": {
+            "value": "Basic"
+        },
+		"administratorLogin": {
+			"value": "Briefcourt"
+		},
+		"administratorPassword": {
+			"value": "P@ssword123456789"
+		}
+	}
+}
